@@ -1,0 +1,47 @@
+{
+  "name": "member",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "jobtitle": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string"
+    },
+    "image": {
+      "type": "buffer"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "post": {
+      "type": "hasMany",
+      "model": "post",
+      "foreignKey": "memberId"
+    },
+    "comment": {
+      "type": "hasMany",
+      "model": "comment",
+      "foreignKey": "memberId"
+    },
+    "position": {
+      "type": "hasMany",
+      "model": "position",
+      "foreignKey": "memberId"
+    }
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "register"
+    }
+  ],
+  "methods": {}
+}

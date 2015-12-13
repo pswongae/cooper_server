@@ -1,0 +1,46 @@
+{
+  "name": "comment",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "content": {
+      "type": "string",
+      "required": true
+    },
+    "create_time": {
+      "type": "date",
+      "required": true
+    },
+    "last_modified_time": {
+      "type": "date",
+      "required": true
+    },
+    "category": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "member": {
+      "type": "belongsTo",
+      "model": "member",
+      "foreignKey": "memberId"
+    },
+    "post": {
+      "type": "belongsTo",
+      "model": "post",
+      "foreignKey": "postId"
+    },
+    "tag": {
+      "type": "hasMany",
+      "model": "tag",
+      "foreignKey": "commentId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

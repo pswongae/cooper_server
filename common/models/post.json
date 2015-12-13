@@ -1,0 +1,65 @@
+{
+  "name": "post",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "create_time": {
+      "type": "date",
+      "required": true
+    },
+    "last_modified_time": {
+      "type": "date",
+      "required": true
+    },
+    "is_recruiting": {
+      "type": "boolean",
+      "required": true
+    },
+    "categories": {
+      "type": [
+        "string"
+      ],
+      "required": true
+    },
+    "view_num": {
+      "type": "number",
+      "required": true
+    },
+    "like_num": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "member": {
+      "type": "belongsTo",
+      "model": "member",
+      "foreignKey": "memberId"
+    },
+    "comment": {
+      "type": "hasMany",
+      "model": "comment",
+      "foreignKey": "postId"
+    },
+    "tag": {
+      "type": "hasMany",
+      "model": "tag",
+      "foreignKey": "postId"
+    },
+    "position": {
+      "type": "hasMany",
+      "model": "position",
+      "foreignKey": "postId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

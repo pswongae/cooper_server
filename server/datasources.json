@@ -1,0 +1,32 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "mySQL": {
+    "host": "localhost",
+    "port": 8888,
+    "database": "cooper_db",
+    "username": "root",
+    "password": "admin",
+    "name": "mySQL",
+    "connector": "mysql"
+  },
+  "emailDS": {
+    "name": "mail",
+     "connector": "mail",
+     "transports": [{
+       "type": "smtp",
+       "host": "smtp.gmail.com",
+       "secure": true,
+       "port": 465,
+       "tls": {
+         "rejectUnauthorized": false
+       },
+       "auth": {
+         "user": "cooper.4901e@gmail.com",
+         "pass": "cooperisthebest"
+       }
+     }]
+  }
+}

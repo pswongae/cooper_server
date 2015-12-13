@@ -1,0 +1,33 @@
+{
+  "name": "tag",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "is_post": {
+      "type": "boolean",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "post": {
+      "type": "belongsTo",
+      "model": "post",
+      "foreignKey": "postId"
+    },
+    "comment": {
+      "type": "belongsTo",
+      "model": "comment",
+      "foreignKey": "commentId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

@@ -1300,6 +1300,33 @@ module.factory(
           method: "PUT"
         },
 
+        // INTERNAL. Use Member.position.findById() instead.
+        "prototype$__findById__position": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/members/:id/position/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Member.position.destroyById() instead.
+        "prototype$__destroyById__position": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/members/:id/position/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Member.position.updateById() instead.
+        "prototype$__updateById__position": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/members/:id/position/:fk",
+          method: "PUT"
+        },
+
         /**
          * @ngdoc method
          * @name lbServices.Member#prototype$__get__accessTokens
@@ -1484,6 +1511,31 @@ module.factory(
         // INTERNAL. Use Member.comment.count() instead.
         "prototype$__count__comment": {
           url: urlBase + "/members/:id/comment/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Member.position() instead.
+        "prototype$__get__position": {
+          isArray: true,
+          url: urlBase + "/members/:id/position",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Member.position.create() instead.
+        "prototype$__create__position": {
+          url: urlBase + "/members/:id/position",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Member.position.destroyAll() instead.
+        "prototype$__delete__position": {
+          url: urlBase + "/members/:id/position",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Member.position.count() instead.
+        "prototype$__count__position": {
+          url: urlBase + "/members/:id/position/count",
           method: "GET"
         },
 
@@ -2108,7 +2160,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `status` – `{object=}` - 
+         *  - `member` – `{object=}` - 
          */
         "register": {
           url: urlBase + "/members/register",
@@ -2124,6 +2176,12 @@ module.factory(
         // INTERNAL. Use Comment.member() instead.
         "::get::comment::member": {
           url: urlBase + "/comments/:id/member",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Position.member() instead.
+        "::get::position::member": {
+          url: urlBase + "/positions/:id/member",
           method: "GET"
         },
 
@@ -2948,6 +3006,307 @@ module.factory(
         R.comment.updateById = function() {
           var TargetResource = $injector.get("Comment");
           var action = TargetResource["::updateById::member::comment"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.Member.position
+     * @header lbServices.Member.position
+     * @object
+     * @description
+     *
+     * The object `Member.position` groups methods
+     * manipulating `Position` instances related to `Member`.
+     *
+     * Call {@link lbServices.Member#position Member.position()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Member#position
+         * @methodOf lbServices.Member
+         *
+         * @description
+         *
+         * Queries position of member.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Position` object.)
+         * </em>
+         */
+        R.position = function() {
+          var TargetResource = $injector.get("Position");
+          var action = TargetResource["::get::member::position"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Member.position#count
+         * @methodOf lbServices.Member.position
+         *
+         * @description
+         *
+         * Counts position of member.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.position.count = function() {
+          var TargetResource = $injector.get("Position");
+          var action = TargetResource["::count::member::position"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Member.position#create
+         * @methodOf lbServices.Member.position
+         *
+         * @description
+         *
+         * Creates a new instance in position of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Position` object.)
+         * </em>
+         */
+        R.position.create = function() {
+          var TargetResource = $injector.get("Position");
+          var action = TargetResource["::create::member::position"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Member.position#createMany
+         * @methodOf lbServices.Member.position
+         *
+         * @description
+         *
+         * Creates a new instance in position of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Position` object.)
+         * </em>
+         */
+        R.position.createMany = function() {
+          var TargetResource = $injector.get("Position");
+          var action = TargetResource["::createMany::member::position"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Member.position#destroyAll
+         * @methodOf lbServices.Member.position
+         *
+         * @description
+         *
+         * Deletes all position of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.position.destroyAll = function() {
+          var TargetResource = $injector.get("Position");
+          var action = TargetResource["::delete::member::position"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Member.position#destroyById
+         * @methodOf lbServices.Member.position
+         *
+         * @description
+         *
+         * Delete a related item by id for position.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for position
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.position.destroyById = function() {
+          var TargetResource = $injector.get("Position");
+          var action = TargetResource["::destroyById::member::position"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Member.position#findById
+         * @methodOf lbServices.Member.position
+         *
+         * @description
+         *
+         * Find a related item by id for position.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for position
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Position` object.)
+         * </em>
+         */
+        R.position.findById = function() {
+          var TargetResource = $injector.get("Position");
+          var action = TargetResource["::findById::member::position"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Member.position#updateById
+         * @methodOf lbServices.Member.position
+         *
+         * @description
+         *
+         * Update a related item by id for position.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for position
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Position` object.)
+         * </em>
+         */
+        R.position.updateById = function() {
+          var TargetResource = $injector.get("Position");
+          var action = TargetResource["::updateById::member::position"];
           return action.apply(R, arguments);
         };
 
@@ -4152,6 +4511,45 @@ module.factory(
          */
         "createChangeStream": {
           url: urlBase + "/posts/change-stream",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Post#createPost
+         * @methodOf lbServices.Post
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `post` – `{object=}` - 
+         */
+        "createPost": {
+          url: urlBase + "/posts/createPost",
           method: "POST"
         },
 
@@ -5827,6 +6225,45 @@ module.factory(
           method: "POST"
         },
 
+        /**
+         * @ngdoc method
+         * @name lbServices.Comment#createComment
+         * @methodOf lbServices.Comment
+         *
+         * @description
+         *
+         * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `comment` – `{object=}` - 
+         */
+        "createComment": {
+          url: urlBase + "/comments/createComment",
+          method: "POST"
+        },
+
         // INTERNAL. Use Member.comment.findById() instead.
         "::findById::member::comment": {
           params: {
@@ -7294,6 +7731,12 @@ module.factory(
           method: "GET"
         },
 
+        // INTERNAL. Use Position.member() instead.
+        "prototype$__get__member": {
+          url: urlBase + "/positions/:id/member",
+          method: "GET"
+        },
+
         /**
          * @ngdoc method
          * @name lbServices.Position#create
@@ -7716,6 +8159,65 @@ module.factory(
           method: "POST"
         },
 
+        // INTERNAL. Use Member.position.findById() instead.
+        "::findById::member::position": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/members/:id/position/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Member.position.destroyById() instead.
+        "::destroyById::member::position": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/members/:id/position/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Member.position.updateById() instead.
+        "::updateById::member::position": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/members/:id/position/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use Member.position() instead.
+        "::get::member::position": {
+          isArray: true,
+          url: urlBase + "/members/:id/position",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Member.position.create() instead.
+        "::create::member::position": {
+          url: urlBase + "/members/:id/position",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Member.position.createMany() instead.
+        "::createMany::member::position": {
+          isArray: true,
+          url: urlBase + "/members/:id/position",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Member.position.destroyAll() instead.
+        "::delete::member::position": {
+          url: urlBase + "/members/:id/position",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Member.position.count() instead.
+        "::count::member::position": {
+          url: urlBase + "/members/:id/position/count",
+          method: "GET"
+        },
+
         // INTERNAL. Use Post.position.findById() instead.
         "::findById::post::position": {
           params: {
@@ -7952,6 +8454,86 @@ module.factory(
           var action = TargetResource["::get::position::post"];
           return action.apply(R, arguments);
         };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Position#member
+         * @methodOf lbServices.Position
+         *
+         * @description
+         *
+         * Fetches belongsTo relation member.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Member` object.)
+         * </em>
+         */
+        R.member = function() {
+          var TargetResource = $injector.get("Member");
+          var action = TargetResource["::get::position::member"];
+          return action.apply(R, arguments);
+        };
+
+    return R;
+  }]);
+
+/**
+ * @ngdoc object
+ * @name lbServices.Email
+ * @header lbServices.Email
+ * @object
+ *
+ * @description
+ *
+ * A $resource object for interacting with the `Email` model.
+ *
+ * ## Example
+ *
+ * See
+ * {@link http://docs.angularjs.org/api/ngResource.$resource#example $resource}
+ * for an example of using this object.
+ *
+ */
+module.factory(
+  "Email",
+  ['LoopBackResource', 'LoopBackAuth', '$injector', function(Resource, LoopBackAuth, $injector) {
+    var R = Resource(
+      urlBase + "/Emails/:id",
+      { 'id': '@id' },
+      {
+      }
+    );
+
+
+
+
+    /**
+    * @ngdoc property
+    * @name lbServices.Email#modelName
+    * @propertyOf lbServices.Email
+    * @description
+    * The name of the model represented by this $resource,
+    * i.e. `Email`.
+    */
+    R.modelName = "Email";
+
 
     return R;
   }]);

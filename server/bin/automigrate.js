@@ -4,11 +4,11 @@ var loopback = require('loopback');
 
 var dataSource = app.dataSources.mySQL;
 
-dataSource.automigrate('member', function(err) {
-  if(err) throw err;
-  console.log("member");
+// dataSource.automigrate('member', function(err) {
+//   if(err) throw err;
+//   console.log("member");
 
-});
+// });
 
 dataSource.automigrate('post', function(err) {
   if(err) throw err;
@@ -34,8 +34,8 @@ dataSource.automigrate('position', function(err) {
 
 });
 
-dataSource.automigrate('test', function(err) {
-  if(err) throw err;
-  console.log("test");
+// dataSource.automigrate('test', function(err) {
+//   if(err) throw err;
+//   console.log("test");
 
-});
+// });

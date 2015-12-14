@@ -9,9 +9,9 @@ module.exports = function(Member) {
 		Member.create(data, function(err, member){
 			if (err){
 				console.log(err);
-				cb(err, member);
+				cb(err, null);
 			} else{
-				console.log("Insert Record: ", member);
+				console.log("Insert Member Record: ", member);
 				cb(null, member);
 			}
 		});

@@ -14,9 +14,15 @@ module.exports = function(Post) {
     	data.create_time = new Date();
     	data.last_modified_time = data.create_time;
     	data.is_recruiting = true;
-    	data.view_num = 0;
-    	data.like_num = 0;
-    	data.memberId = currentUser.id;
+    	if (data.view_num == null){
+    		data.view_num = 0;
+		}
+		if (data.like_num == null){
+    		data.like_num = 0;
+    	}
+    	if (currentUser != null){
+	    	data.memberId = currentUser.id;
+	    }
     	var catNameArray = new Array();
     	var catArray = new Array();
     	// console.log(data.categories);
@@ -30,7 +36,7 @@ module.exports = function(Post) {
 		Post.create(data, function(err, post){
 			if (err){
 				console.log(err);
-				cb(err, post);
+				cb(err, null);
 			} else{
 				console.log("Insert Post Record: ", post);
 				var Comment = app.models.Comment;
@@ -75,7 +81,7 @@ module.exports = function(Post) {
     	Post.find(data, function(err, post){
 			if (err){
 				console.log(err);
-				cb(err, post);
+				cb(err, null);
 			} else{
 				var postArray = new Array();
 				Post.getPostArray(postArray, post, 0, function(err, postArray){
@@ -116,6 +122,27 @@ module.exports = function(Post) {
 		}
 	}
 
+	Post.editPost = function(data, cb){
+		Post.findById(data.id, function(err, post){
+			if (err){
+				console.log(err);
+				cb(err, null);
+			} else{
+				var postData = data;
+				postData.last_modified_time = new Date();
+				post.updateAttributes(postData, function(err, post){
+					if (err){
+						console.log(err);
+						cb(err, null);
+					} else{
+						console.log("Edit Post: ", post);
+						cb(null, post);
+					}
+				});
+			}
+		});
+	}
+
 	Post.remoteMethod('createPost', {
 		http: {path: '/createPost', verb: 'post'},
 		accepts: {arg: 'data', type: 'object', http:{source:'body'}},
@@ -124,6 +151,12 @@ module.exports = function(Post) {
 
 	Post.remoteMethod('getPost', {
 		http: {path: '/getPost', verb: 'post'},
+		accepts: {arg: 'data', type: 'object', http:{source:'body'}},
+		returns: {arg: 'post', type: 'object'}
+	});
+
+	Post.remoteMethod('editPost', {
+		http: {path: '/editPost', verb: 'post'},
 		accepts: {arg: 'data', type: 'object', http:{source:'body'}},
 		returns: {arg: 'post', type: 'object'}
 	});

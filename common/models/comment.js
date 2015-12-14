@@ -13,7 +13,9 @@ module.exports = function(Comment) {
 
     	data.create_time = new Date();
     	data.last_modified_time = data.create_time;
-    	data.memberId = currentUser.id;
+    	if (currentUser != null){
+	    	data.memberId = currentUser.id;
+	    }
 
 		Comment.create(data, function(err, comment){
 			if (err){
@@ -28,6 +30,7 @@ module.exports = function(Comment) {
 						tagData.name = data.tag[i];
 						tagData.is_post = false;
 						tagData.commentId = comment.id;
+						tagData.postId = data.postId;
 						Tag.createTag(tagData, function(err, tag){
 							if (err){
 								console.log(err);
@@ -37,6 +40,21 @@ module.exports = function(Comment) {
 						});
 					}
 				}
+				comment.post(function(err, post){
+					if (err){
+						console.log(err);
+					} else{
+						var postData = {};
+						postData.last_modified_time = data.last_modified_time;
+						post.updateAttributes(postData, function(err, post){
+							if (err){
+								console.log(err);
+							} else{
+								console.log("Edit Post: ", post);
+							}
+						});
+					}
+				});
 				console.log("Comment Created");
 				cb(null, comment);
 			}
@@ -47,7 +65,7 @@ module.exports = function(Comment) {
 		Comment.find(data, function(err, comment){
 			if (err){
 				console.log(err);
-				cb(err, comment);
+				cb(err, null);
 			} else{
 				var commentArray = new Array();
 				Comment.getCommentArray(commentArray, comment, 0, function(err, commentArray){
@@ -89,6 +107,42 @@ module.exports = function(Comment) {
 		}
 	}
 
+	Comment.editComment = function(data, cb){
+		Comment.findById(data.id, function(err, comment){
+			if (err){
+				console.log(err);
+				cb(err, null);
+			} else{
+				var commentData = data;
+				commentData.last_modified_time = new Date();
+				comment.updateAttributes(commentData, function(err, comment){
+					if (err){
+						console.log(err);
+						cb(err, null);
+					} else{
+						comment.post(function(err, post){
+							if (err){
+								console.log(err);
+							} else{
+								var postData = {};
+								postData.last_modified_time = commentData.last_modified_time;
+								post.updateAttributes(postData, function(err, post){
+									if (err){
+										console.log(err);
+									} else{
+										console.log("Edit Post: ", post);
+									}
+								});
+							}
+						});
+						console.log("Edit Comment: ", comment);
+						cb(null, comment);
+					}
+				});
+			}
+		});
+	}
+
 	Comment.remoteMethod('createComment', {
 		http: {path: '/createComment', verb: 'post'},
 		accepts: {arg: 'data', type: 'object', http:{source:'body'}},
@@ -97,6 +151,12 @@ module.exports = function(Comment) {
 
 	Comment.remoteMethod('getComment', {
 		http: {path: '/getComment', verb: 'post'},
+		accepts: {arg: 'data', type: 'object', http:{source:'body'}},
+		returns: {arg: 'comment', type: 'object'}
+	});
+
+	Comment.remoteMethod('editComment', {
+		http: {path: '/editComment', verb: 'post'},
 		accepts: {arg: 'data', type: 'object', http:{source:'body'}},
 		returns: {arg: 'comment', type: 'object'}
 	});

@@ -1,0 +1,24 @@
+{
+  "name": "view",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "post": {
+      "type": "belongsTo",
+      "model": "post",
+      "foreignKey": "postId"
+    },
+    "member": {
+      "type": "belongsTo",
+      "model": "member",
+      "foreignKey": "memberId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

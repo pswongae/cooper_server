@@ -13,20 +13,22 @@
     "connector": "mysql"
   },
   "emailDS": {
-    "name": "mail",
-     "connector": "mail",
-     "transports": [{
-       "type": "smtp",
-       "host": "smtp.gmail.com",
-       "secure": true,
-       "port": 465,
-       "tls": {
-         "rejectUnauthorized": false
-       },
-       "auth": {
-         "user": "cooper.4901e@gmail.com",
-         "pass": "cooperisthebest"
-       }
-     }]
+    "name": "emailDS",
+    "connector": "mail",
+    "transports": [
+      {
+        "type": "smtp",
+        "host": "smtp.gmail.com",
+        "secure": true,
+        "port": 465,
+        "tls": {
+          "rejectUnauthorized": false
+        },
+        "auth": {
+          "user": "cooper.4901e@gmail.com",
+          "pass": "cooperisthebest"
+        }
+      }
+    ]
   }
 }

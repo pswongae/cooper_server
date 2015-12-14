@@ -35,7 +35,7 @@
   "member": {
     "dataSource": "mySQL",
     "public": true,
-    "options":{
+    "options": {
       "emailVerificationRequired": true
     }
   },
@@ -61,5 +61,13 @@
   },
   "Email": {
     "dataSource": "emailDS"
+  },
+  "like": {
+    "dataSource": "mySQL",
+    "public": true
+  },
+  "view": {
+    "dataSource": "mySQL",
+    "public": true
   }
 }

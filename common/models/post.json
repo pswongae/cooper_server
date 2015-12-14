@@ -58,6 +58,16 @@
       "type": "hasMany",
       "model": "position",
       "foreignKey": "postId"
+    },
+    "like": {
+      "type": "hasMany",
+      "model": "like",
+      "foreignKey": "postId"
+    },
+    "view": {
+      "type": "hasMany",
+      "model": "view",
+      "foreignKey": "postId"
     }
   },
   "acls": [],

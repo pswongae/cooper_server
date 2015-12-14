@@ -33,6 +33,16 @@
       "type": "hasMany",
       "model": "position",
       "foreignKey": "memberId"
+    },
+    "like": {
+      "type": "hasMany",
+      "model": "like",
+      "foreignKey": "memberId"
+    },
+    "view": {
+      "type": "hasMany",
+      "model": "view",
+      "foreignKey": "memberId"
     }
   },
   "acls": [

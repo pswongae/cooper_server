@@ -98,8 +98,21 @@ module.exports = function(Comment) {
 				} else{
 					commentObj.author = mem.username;
 					commentObj.authorTitle = mem.jobtitle;
-					commentArray.push(commentObj);
-					Comment.getCommentArray(commentArray, comment, i+1, cb);
+					var Tag = app.models.Tag;
+					Tag.getTag({"where": {"is_post": false, "commentId": commentObj.id}, "order": "name ASC"}, function(err, tagObj){
+						if (err){
+							console.log(err, null);
+							cb(err, null);
+						} else{
+							var tagArray = new Array();
+							for (var j=0; j<tagObj.length; j++){
+								tagArray.push(tagObj[j].name);
+							}
+							commentObj.tags = tagArray;
+							commentArray.push(commentObj);
+							Comment.getCommentArray(commentArray, comment, i+1, cb);
+						}
+					});
 				}
 			});
 		} else{

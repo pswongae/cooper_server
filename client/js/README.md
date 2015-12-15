@@ -105,7 +105,12 @@
 	      "memberId": 4,
 	      "date": "14 - 12 - 2015",
 	      "time": "21 : 51 : 37",
-	      "author": "Elvis Wong"
+	      "author": "Elvis Wong",
+	      "tags": [
+	        "1",
+	        "2",
+	        "3"
+	      ]
 	    }
 	  ]
 	}
@@ -131,7 +136,12 @@
 	      "memberId": 2,
 	      "date": "14 - 12 - 2015",
 	      "time": "21 : 51 : 37",
-	      "author": "Nelson Cheung"
+	      "author": "Nelson Cheung",
+	      "tags": [
+	        "1",
+	        "2",
+	        "3"
+	      ]
 	    },
 	    {
 	      "title": "Start a cafe shop in Hong Kong",
@@ -150,7 +160,12 @@
 	      "memberId": 3,
 	      "date": "14 - 12 - 2015",
 	      "time": "21 : 51 : 37",
-	      "author": "Sam Wong"
+	      "author": "Sam Wong",
+	      "tags": [
+	        "1",
+	        "2",
+	        "3"
+	      ]
 	    },
 	    {
 	      "title": "COMP4901E - Group project",
@@ -169,7 +184,12 @@
 	      "memberId": 4,
 	      "date": "14 - 12 - 2015",
 	      "time": "21 : 51 : 37",
-	      "author": "Elvis Wong"
+	      "author": "Elvis Wong",
+	      "tags": [
+	        "1",
+	        "2",
+	        "3"
+	      ]
 	    },
 	    ...
 	    ...
@@ -249,7 +269,12 @@
 	      "date": "14 - 12 - 2015",
 	      "time": "21 : 51 : 37",
 	      "author": "Nelson Cheung",
-	      "authorTitle": "a"
+	      "authorTitle": "a",
+	      "tags": [
+	        "1",
+	        "2",
+	        "3"
+	      ]
 	    }
 	  ]
 	}
@@ -269,7 +294,12 @@
 	      "date": "14 - 12 - 2015",
 	      "time": "21 : 51 : 37",
 	      "author": "Nelson Cheung",
-	      "authorTitle": "a"
+	      "authorTitle": "a",
+	      "tags": [
+	        "1",
+	        "2",
+	        "3"
+	      ]
 	    },
 	    {
 	      "content": "Here is the 'Financial' information",
@@ -282,7 +312,12 @@
 	      "date": "14 - 12 - 2015",
 	      "time": "21 : 51 : 37",
 	      "author": "Nelson Cheung",
-	      "authorTitle": "a"
+	      "authorTitle": "a",
+	      "tags": [
+	        "1",
+	        "2",
+	        "3"
+	      ]
 	    },
 	    ...
 	    ...

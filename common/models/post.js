@@ -113,8 +113,21 @@ module.exports = function(Post) {
 					cb(err, null);
 				} else{
 					postObj.author = mem.username;
-					postArray.push(postObj);
-					Post.getPostArray(postArray, post, i+1, cb);
+					var Tag = app.models.Tag;
+					Tag.getTag({"where": {"is_post": true, "postId": postObj.id}, "order": "name ASC"}, function(err, tagObj){
+						if (err){
+							console.log(err, null);
+							cb(err, null);
+						} else{
+							var tagArray = new Array();
+							for (var j=0; j<tagObj.length; j++){
+								tagArray.push(tagObj[j].name);
+							}
+							postObj.tags = tagArray;
+							postArray.push(postObj);
+							Post.getPostArray(postArray, post, i+1, cb);
+						}
+					});
 				}
 			});
 		} else{

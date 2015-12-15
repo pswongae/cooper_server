@@ -51,6 +51,18 @@
       "principalId": "$everyone",
       "permission": "ALLOW",
       "property": "register"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "getMember"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "editMember"
     }
   ],
   "methods": {}

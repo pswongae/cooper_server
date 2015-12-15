@@ -597,4 +597,51 @@ if position is already applied by other user
 	  "position": null
 	}
 
+## getMember
+### Parameter
+	{}
+### Return
+	{
+	  "member": {
+	    "jobtitle": "a",
+	    "description": "b",
+	    "image": null,
+	    "realm": null,
+	    "username": "Sam Wong",
+	    "credentials": null,
+	    "challenges": null,
+	    "email": "user2@abc.com",
+	    "emailVerified": true,
+	    "verificationToken": null,
+	    "status": null,
+	    "created": null,
+	    "lastUpdated": null,
+	    "id": 3
+	  }
+	}
+
+## editMember
+### Parameter
+	{
+	  "jobtitle": "aaa"
+	}
+### Return
+	{
+	  "member": {
+	    "jobtitle": "aaa",
+	    "description": "b",
+	    "image": null,
+	    "realm": null,
+	    "username": "Sam Wong",
+	    "credentials": null,
+	    "challenges": null,
+	    "email": "user2@abc.com",
+	    "emailVerified": true,
+	    "verificationToken": null,
+	    "status": null,
+	    "created": null,
+	    "lastUpdated": null,
+	    "id": 3
+	  }
+	}
 ## Add oil!!!

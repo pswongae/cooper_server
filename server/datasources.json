@@ -5,10 +5,10 @@
   },
   "mySQL": {
     "host": "localhost",
-    "port": 8888,
+    "port": 3306,
     "database": "cooper_db",
-    "username": "root",
-    "password": "admin",
+    "username": "cooperuser",
+    "password": "cooperpw",
     "name": "mySQL",
     "connector": "mysql"
   },
